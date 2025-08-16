@@ -21,7 +21,8 @@ pre-commit run --all-files
 pre-commit run <hook-name>
 ```
 
-### Available pre-commit hooks:
+### Available pre-commit hooks
+
 - **File validation**: check-json, check-yaml, check-added-large-files
 - **Security**: detect-aws-credentials, detect-private-key
 - **Formatting**: end-of-file-fixer, trailing-whitespace, mixed-line-ending
