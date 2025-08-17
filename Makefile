@@ -7,9 +7,7 @@
 UNAME_S := $(shell uname -s)
 
 # Check if command exists
-define check_command
-	@command -v $(1) >/dev/null 2>&1
-endef
+check_command = $(shell command -v $(1) >/dev/null 2>&1 && echo "exists")
 
 .PHONY: help
 help: ## Show this help message
@@ -37,7 +35,7 @@ endif
 install-brew: check-os ## Install Homebrew package manager
 ifeq ($(UNAME_S),Darwin)
 	@echo "Installing Homebrew for macOS..."
-	@if $(call check_command,brew); then \
+	@if [ "$(call check_command,brew)" = "exists" ]; then \
 		echo "✓ Homebrew already installed"; \
 	else \
 		echo "→ Installing Homebrew..."; \
@@ -46,7 +44,7 @@ ifeq ($(UNAME_S),Darwin)
 	fi
 else ifeq ($(UNAME_S),Linux)
 	@echo "Installing Homebrew for Linux..."
-	@if $(call check_command,brew); then \
+	@if [ "$(call check_command,brew)" = "exists" ]; then \
 		echo "✓ Homebrew already installed"; \
 	else \
 		echo "→ Installing Homebrew..."; \
