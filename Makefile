@@ -1,5 +1,5 @@
 # Bootstrap development environment
-# This Makefile handles the initial setup of development tools
+# This Makefile handles Homebrew installation only
 
 .DEFAULT_GOAL := help
 
@@ -13,7 +13,7 @@ endef
 
 .PHONY: help
 help: ## Show this help message
-	@echo "Bootstrap development environment"
+	@echo "Bootstrap Homebrew for development environment"
 	@echo ""
 	@echo "Usage: make [target]"
 	@echo ""
@@ -58,46 +58,17 @@ else ifeq ($(UNAME_S),Linux)
 	fi
 endif
 
-.PHONY: install-mise
-install-mise: install-brew ## Install mise version manager
-	@echo "Installing mise..."
-	@if $(call check_command,mise); then \
-		echo "✓ mise already installed"; \
-	else \
-		echo "→ Installing mise via Homebrew..."; \
-		brew install mise; \
-		echo "✓ mise installed successfully"; \
-	fi
-
-.PHONY: install-just
-install-just: install-brew ## Install just command runner
-	@echo "Installing just..."
-	@if $(call check_command,just); then \
-		echo "✓ just already installed"; \
-	else \
-		echo "→ Installing just via Homebrew..."; \
-		brew install just; \
-		echo "✓ just installed successfully"; \
-	fi
-
 .PHONY: bootstrap
-bootstrap: install-brew install-mise install-just ## Bootstrap complete development environment
+bootstrap: install-brew ## Install Homebrew and show next steps
 	@echo ""
-	@echo "🎉 Bootstrap complete!"
+	@echo "🍺 Homebrew installation complete!"
 	@echo ""
 	@echo "Next steps:"
 	@echo "1. Reload your shell or run: source ~/.bashrc (Linux) or restart terminal (macOS)"
-	@echo "2. Run: just setup"
+	@echo "2. Run: brew bundle install (to install all development tools)"
+	@echo "3. Run: just setup (to setup development environment)"
 	@echo ""
-	@echo "Available commands after bootstrap:"
+	@echo "Available commands after setup:"
 	@echo "  just help    - Show available tasks"
 	@echo "  just setup   - Setup development environment"
 	@echo "  just lint    - Run code quality checks"
-
-.PHONY: clean
-clean: ## Remove installed tools (use with caution)
-	@echo "⚠ This will remove mise and just, but not Homebrew"
-	@read -p "Are you sure? (y/N): " confirm && [ "$$confirm" = "y" ] || exit 1
-	@if $(call check_command,mise); then brew uninstall mise; fi
-	@if $(call check_command,just); then brew uninstall just; fi
-	@echo "✓ Tools removed"
