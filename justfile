@@ -8,7 +8,13 @@ help:
 setup:
     @echo "Setting up development environment..."
     brew bundle install
-    mise install
+    @if command -v mise >/dev/null 2>&1; then \
+        echo "→ Installing tools with mise..."; \
+        mise install; \
+    else \
+        echo "⚠ mise not found. Please run 'make bootstrap' first."; \
+        exit 1; \
+    fi
     @echo "→ Installing Node.js CLI tools..."
     $(mise where nodejs)/bin/npm install -g @anthropic-ai/claude-code
     $(mise where nodejs)/bin/npm install -g @google/gemini-cli
