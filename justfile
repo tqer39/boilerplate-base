@@ -39,7 +39,13 @@ fix:
 
 # Clean pre-commit cache
 clean:
-    pre-commit clean
+    @echo "Cleaning pre-commit cache..."
+    -pre-commit clean
+    @if [ -d ~/.cache/pre-commit ]; then \
+        echo "→ Force removing pre-commit cache directory..."; \
+        rm -rf ~/.cache/pre-commit; \
+    fi
+    @echo "Clean complete!"
 
 # Show mise status
 status:
