@@ -48,7 +48,7 @@ mise upgrade
 # Show all available tasks
 just help
 
-# Setup development environment (brew bundle + mise install + pre-commit install)
+# Setup development environment (brew bundle + mise install + Claude/Gemini CLI + pre-commit install)
 just setup
 
 # Run all linting checks
@@ -60,6 +60,9 @@ just lint-hook <hook-name>
 # Fix common formatting issues
 just fix
 
+# Clean pre-commit cache (with force cleanup)
+just clean
+
 # Update pre-commit hooks
 just update-hooks
 
@@ -68,6 +71,9 @@ just update-brew
 
 # Update mise tools
 just update
+
+# Show mise status
+just status
 ```
 
 ## Code Quality and Linting
@@ -100,9 +106,27 @@ pre-commit run --all-files
 
 The repository uses cspell for spell checking with a custom dictionary in `cspell.json`. The dictionary includes project-specific terms, tools, and proper nouns commonly used in development.
 
-## Dependency Management
+## Tool Architecture and Dependencies
 
-- **Renovate**: Automated dependency updates are configured via `renovate.json5`, extending from `github>tqer39/renovate-config`
+### Tool Responsibilities
+
+This setup separates responsibilities clearly:
+
+- **brew**: System-level development tools (git, pre-commit, mise, just, uv)
+- **mise**: Node.js version management only
+- **uv**: Python package and project management
+- **pre-commit**: Handles all linting tools automatically (no need to install separately)
+
+### Automated CLI Tools Installation
+
+The setup automatically installs AI CLI tools during `just setup`:
+
+- **Claude Code CLI**: `@anthropic-ai/claude-code` - For AI-assisted development
+- **Gemini CLI**: `@google/gemini-cli` - Alternative AI assistant
+
+### Dependency Management
+
+- **Renovate**: Automated dependency updates via `renovate.json5`, extending from `github>tqer39/renovate-config`
 
 ## GitHub Workflows and Automation
 
