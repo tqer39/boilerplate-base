@@ -68,7 +68,17 @@ bootstrap: install-brew ## Install Homebrew and show next steps
 	@echo "🍺 Homebrew installation complete!"
 	@echo ""
 	@echo "Next steps:"
-	@echo "1. Reload your shell or run: source ~/.bashrc (Linux) or restart terminal (macOS)"
+ifeq ($(UNAME_S),Darwin)
+	@echo "1. Restart your terminal (macOS)"
+else ifeq ($(UNAME_S),Linux)
+	@if [ "$$(basename "$$SHELL")" = "zsh" ]; then \
+		echo "1. Reload your shell: source ~/.zshrc (Linux)"; \
+	else \
+		echo "1. Reload your shell: source ~/.bashrc (Linux)"; \
+	fi
+else
+	@echo "1. Reload your shell or restart terminal"
+endif
 	@echo "2. Run: brew bundle install (to install all development tools)"
 	@echo "3. Run: just setup (to setup development environment)"
 	@echo ""
