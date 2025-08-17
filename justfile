@@ -10,6 +10,9 @@ setup:
     brew bundle install
     @if command -v mise >/dev/null 2>&1; then \
         echo "→ Installing tools with mise..."; \
+        if [ "$(basename "$SHELL")" = "zsh" ]; then \
+            eval "$(mise activate zsh)"; \
+        fi; \
         mise install; \
     else \
         echo "⚠ mise not found. Please run 'make bootstrap' first."; \
