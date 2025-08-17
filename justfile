@@ -27,10 +27,6 @@ lint-hook hook:
 update-hooks:
     pre-commit autoupdate
 
-# Check spell checking
-spell:
-    cspell "**" ".*/**"
-
 # Fix common formatting issues
 fix:
     pre-commit run end-of-file-fixer --all-files
