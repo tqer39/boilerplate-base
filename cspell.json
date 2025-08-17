@@ -27,6 +27,7 @@
     "comfyui",
     "concat",
     "deployments",
+    "elif",
     "FASTMCP",
     "fastapi",
     "getsentry",

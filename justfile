@@ -12,6 +12,8 @@ setup:
         echo "→ Installing tools with mise..."; \
         if [ "$(basename "$SHELL")" = "zsh" ]; then \
             eval "$(mise activate zsh)"; \
+        elif [ "$(basename "$SHELL")" = "bash" ]; then \
+            eval "$(mise activate bash)"; \
         fi; \
         mise install; \
     else \
