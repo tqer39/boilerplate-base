@@ -50,7 +50,13 @@ else ifeq ($(UNAME_S),Linux)
 		echo "→ Installing Homebrew..."; \
 		/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; \
 		echo "→ Adding Homebrew to PATH..."; \
-		echo 'eval "$$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bashrc; \
+		if [ "$$(basename "$$SHELL")" = "zsh" ]; then \
+			echo 'eval "$$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.zshrc; \
+			echo "Added to ~/.zshrc"; \
+		else \
+			echo 'eval "$$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bashrc; \
+			echo "Added to ~/.bashrc"; \
+		fi; \
 		eval "$$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"; \
 		echo "✓ Homebrew installed successfully"; \
 	fi
