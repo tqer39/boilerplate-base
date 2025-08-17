@@ -6,19 +6,86 @@
 
 これは、基盤となるプロジェクト構造と設定ファイルを提供することを目的とした、ベースボイラープレートテンプレートリポジトリです。このリポジトリは、事前設定された開発ツールとワークフローを備えた新しいプロジェクトの出発点として機能します。
 
-## コード品質とリンティング
+## セットアップと開発環境
 
-このリポジトリでは、コード品質の強制にpre-commitフックを使用しています。以下のコマンドを実行してください：
+### 初期セットアップ
+
+このリポジトリでは、パッケージ管理にHomebrew、ツールバージョン管理にmise、タスク自動化にjustを使用します：
 
 ```bash
-# pre-commitフックをインストール
-pre-commit install
+# ステップ1: Homebrew をインストール（まだインストールされていない場合）
+make bootstrap
 
-# すべてのpre-commitフックを手動実行
+# ステップ2: すべての開発ツールをインストール
+brew bundle install
+
+# ステップ3: 開発環境をセットアップ
+just setup
+```
+
+**代替ワンコマンドセットアップ**（Homebrewが既にインストールされている場合）:
+
+```bash
+just setup
+```
+
+### mise によるツール管理
+
+```bash
+# .tool-versionsで定義されたすべてのツールをインストール
+mise install
+
+# インストールされたバージョンを確認
+mise list
+
+# ツールを最新バージョンに更新
+mise upgrade
+```
+
+### just によるタスク管理
+
+```bash
+# すべての利用可能なタスクを表示
+just help
+
+# 開発環境をセットアップ（brew bundle + mise install + Claude/Gemini CLI + pre-commit install）
+just setup
+
+# すべてのリンティングチェックを実行
+just lint
+
+# 特定のpre-commitフックを実行
+just lint-hook <hook-name>
+
+# よくあるフォーマット問題を修正
+just fix
+
+# pre-commitキャッシュをクリア（強制クリーンアップ）
+just clean
+
+# pre-commitフックを更新
+just update-hooks
+
+# Homebrewパッケージを更新
+just update-brew
+
+# mise管理のツールを更新
+just update
+
+# miseの状態を表示
+just status
+```
+
+## コード品質とリンティング
+
+このリポジトリでは、コード品質の強制にpre-commitフックを使用しています。直接実行するかjustコマンドを使用できます：
+
+```bash
+# justを使用（推奨）
+just lint
+
+# または直接pre-commitを実行
 pre-commit run --all-files
-
-# 特定のフックを実行
-pre-commit run <hook-name>
 ```
 
 ### 利用可能なpre-commitフック
@@ -39,7 +106,25 @@ pre-commit run <hook-name>
 
 リポジトリでは、`cspell.json`にカスタム辞書を持つcspellをスペルチェックに使用しています。辞書には、プロジェクト固有の用語、ツール、開発で一般的に使用される固有名詞が含まれています。
 
-## 依存関係管理
+## ツールアーキテクチャと依存関係
+
+### ツールの責任範囲
+
+このセットアップでは責任範囲を明確に分離しています：
+
+- **brew**: システムレベルの開発ツール（git、pre-commit、mise、just、uv）
+- **mise**: Node.jsのバージョン管理のみ
+- **uv**: Pythonパッケージ・プロジェクト管理
+- **pre-commit**: すべてのリンティングツールを自動処理（個別インストール不要）
+
+### 自動CLIツールインストール
+
+`just setup`の実行時に、AI CLIツールが自動的にインストールされます：
+
+- **Claude Code CLI**: `@anthropic-ai/claude-code` - AI支援開発用
+- **Gemini CLI**: `@google/gemini-cli` - 代替AIアシスタント
+
+### 依存関係管理
 
 - **Renovate**: 依存関係の自動更新は`renovate.json5`を通じて設定され、`github>tqer39/renovate-config`から拡張されています
 
@@ -57,7 +142,12 @@ pre-commit run <hook-name>
 - `.github/`: GitHub固有の設定（ワークフロー、CODEOWNERS、テンプレート）
 - `.editorconfig`: 一貫したコードフォーマットのためのエディタ設定
 - `.pre-commit-config.yaml`: pre-commitフック設定
+- `.tool-versions`: mise用のツールバージョン定義
+- `Brewfile`: brew bundle用のHomebrewパッケージ定義
 - `cspell.json`: スペルチェッカー設定とカスタム辞書
+- `docs/`: ドキュメントファイル
+- `justfile`: タスク自動化定義
+- `Makefile`: Homebrewブートストラップセットアップ
 - `renovate.json5`: 依存関係更新自動化設定
 
 ## コード所有権
