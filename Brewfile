@@ -3,22 +3,10 @@
 # Note: Node.js and Python are managed by mise, not brew
 
 # Core development tools
-brew "mise"     # Version manager for multiple languages
-brew "just"     # Command runner and task automation
-brew "git"      # Version control system
-
-# Pre-commit and linting tools
-brew "pre-commit"      # Git hooks framework
-brew "yamllint"        # YAML linter
-brew "shellcheck"      # Shell script linter
-brew "actionlint"      # GitHub Actions linter
-
-# Spell checking
-brew "cspell"
-
-# Documentation and formatting
-brew "markdownlint-cli2"
-brew "prettier"
+brew "mise"        # Version manager for multiple languages
+brew "just"        # Command runner and task automation
+brew "git"         # Version control system
+brew "pre-commit"  # Git hooks framework
 
 # Optional: Additional useful tools
 # brew "gh"            # GitHub CLI
