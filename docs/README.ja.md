@@ -40,16 +40,35 @@ just help
 # コード品質チェックを実行
 just lint
 
+# よくあるフォーマット問題を修正
+just fix
+
+# pre-commitキャッシュをクリア
+just clean
+
 # 開発ツールを更新
 just update-brew  # Homebrewパッケージを更新
 just update       # mise管理のツールを更新
+just update-hooks # pre-commitフックを更新
+
+# miseの状態を表示
+just status
 ```
 
 ## ツールの責任範囲
 
 このセットアップでは、ツールの責任範囲を明確に分離しています：
 
-- **brew**: システムレベルの開発ツール（git、pre-commit、リンターなど）
-- **mise**: プログラミング言語のバージョン管理（Node.js、Pythonなど）
+- **brew**: システムレベルの開発ツール（git、pre-commit、mise、just、uv）
+- **mise**: Node.jsのバージョン管理のみ
+- **uv**: Pythonパッケージ・プロジェクト管理
+- **pre-commit**: すべてのリンティングツールを自動処理（個別インストール不要）
+
+### 自動AI CLIツール
+
+`just setup`の実行時に、AI開発ツールが自動的にインストールされます：
+
+- **Claude Code CLI**: `@anthropic-ai/claude-code` - AI支援開発用
+- **Gemini CLI**: `@google/gemini-cli` - 代替AIアシスタント
 
 このアプローチにより、関心事の明確な分離が保証され、システムツールと言語固有のバージョンとの間の競合が回避されます。

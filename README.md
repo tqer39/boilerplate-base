@@ -40,16 +40,35 @@ just help
 # Run code quality checks
 just lint
 
+# Fix common formatting issues
+just fix
+
+# Clean pre-commit cache
+just clean
+
 # Update development tools
 just update-brew  # Update Homebrew packages
 just update       # Update mise-managed tools
+just update-hooks # Update pre-commit hooks
+
+# Show mise status
+just status
 ```
 
 ## Tool Responsibilities
 
 This setup clearly separates tool responsibilities:
 
-- **brew**: System-level development tools (git, pre-commit, linters, etc.)
-- **mise**: Programming language version management (Node.js, Python, etc.)
+- **brew**: System-level development tools (git, pre-commit, mise, just, uv)
+- **mise**: Node.js version management only
+- **uv**: Python package and project management
+- **pre-commit**: Handles all linting tools automatically (no need to install separately)
+
+### Automated AI CLI Tools
+
+The setup automatically installs AI development tools during `just setup`:
+
+- **Claude Code CLI**: `@anthropic-ai/claude-code` - For AI-assisted development
+- **Gemini CLI**: `@google/gemini-cli` - Alternative AI assistant
 
 This approach ensures clean separation of concerns and avoids conflicts between system tools and language-specific versions.
