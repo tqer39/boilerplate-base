@@ -9,6 +9,7 @@ setup:
     @echo "Setting up development environment..."
     brew bundle install
     mise install
+    npm install -g @anthropic-ai/claude-code
     pre-commit install
     @echo "Setup complete!"
 
