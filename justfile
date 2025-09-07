@@ -20,8 +20,8 @@ setup:
         exit 1; \
     fi
     @echo "→ Installing Node.js CLI tools..."
-    $(mise where nodejs)/bin/npm install -g @anthropic-ai/claude-code
-    $(mise where nodejs)/bin/npm install -g @google/gemini-cli
+    mise exec node -- npm install -g @anthropic-ai/claude-code
+    mise exec node -- npm install -g @google/gemini-cli
     pre-commit install
     @echo "Setup complete!"
 
