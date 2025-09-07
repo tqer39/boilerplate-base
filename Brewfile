@@ -8,10 +8,7 @@ brew "just"        # Command runner and task automation
 brew "git"         # Version control system
 brew "pre-commit"  # Git hooks framework
 brew "uv"          # Python package and project manager
-
-# rulesync CLI
-tap "dyoshikawa/tap"
-brew "dyoshikawa/tap/rulesync"
+brew "rulesync"    # Synchronize repository rules
 
 # Optional: Additional useful tools
 # brew "gh"            # GitHub CLI
