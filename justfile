@@ -1,5 +1,8 @@
 # Development tasks for boilerplate-base
 
+# Use bash for all recipes to avoid zsh/sh incompatibilities
+set shell := ["bash", "-c"]
+
 # Show available commands
 help:
     @just --list
@@ -10,11 +13,7 @@ setup:
     brew bundle install
     @if command -v mise >/dev/null 2>&1; then \
         echo "→ Installing tools with mise..."; \
-        if [ "$(basename "$SHELL")" = "zsh" ]; then \
-            eval "$(mise activate zsh)"; \
-        elif [ "$(basename "$SHELL")" = "bash" ]; then \
-            eval "$(mise activate bash)"; \
-        fi; \
+        eval "$(mise activate bash)"; \
         mise install; \
     else \
         echo "⚠ mise not found. Please run 'make bootstrap' first."; \
