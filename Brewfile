@@ -9,12 +9,12 @@ brew "git"         # Version control system
 brew "pre-commit"  # Git hooks framework
 brew "uv"          # Python package and project manager
 
+# rulesync CLI
+tap "dyoshikawa/tap"
+brew "dyoshikawa/tap/rulesync"
+
 # Optional: Additional useful tools
 # brew "gh"            # GitHub CLI
 # brew "jq"            # JSON processor
 # brew "yq"            # YAML processor
 # brew "tree"          # Directory structure viewer
-#
-# Optional: rulesync CLI (利用可能な場合に有効化)
-# tap "<tap>"           # 例: dyoshikawa/tap
-# brew "rulesync"
