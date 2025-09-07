@@ -14,3 +14,7 @@ brew "uv"          # Python package and project manager
 # brew "jq"            # JSON processor
 # brew "yq"            # YAML processor
 # brew "tree"          # Directory structure viewer
+#
+# Optional: rulesync CLI (利用可能な場合に有効化)
+# tap "<tap>"           # 例: dyoshikawa/tap
+# brew "rulesync"

@@ -72,3 +72,7 @@ The setup automatically installs AI development tools during `just setup`:
 - **Gemini CLI**: `@google/gemini-cli` - Alternative AI assistant
 
 This approach ensures clean separation of concerns and avoids conflicts between system tools and language-specific versions.
+
+## Optional: rulesync
+
+If you want to synchronize common config files from an external rules repository, see `docs/RULESYNC.ja.md` for setup and usage.

@@ -71,3 +71,13 @@ update-brew:
     brew update
     brew bundle install
     brew upgrade
+
+# Run rulesync with passthrough args
+rulesync args='':
+    @if command -v rulesync >/dev/null 2>&1; then \
+        echo "Running: rulesync {{args}}"; \
+        rulesync {{args}}; \
+    else \
+        echo "⚠ rulesync が見つかりません。docs/RULESYNC.ja.md を参照してインストールしてください。"; \
+        exit 1; \
+    fi
