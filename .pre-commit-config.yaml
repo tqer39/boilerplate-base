@@ -74,7 +74,7 @@ repos:
     rev: 41.75.0
     hooks:
       - id: renovate-config-validator
-        files: renovate.json
+        files: ^renovate\.json(5)?$
 
   - repo: https://github.com/antonbabenko/pre-commit-terraform
     rev: v1.100.0
