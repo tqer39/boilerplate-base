@@ -22,6 +22,7 @@ setup:
     @echo "→ Installing Node.js CLI tools..."
     mise exec node -- npm install -g @anthropic-ai/claude-code
     mise exec node -- npm install -g @google/gemini-cli
+    mise exec node -- npm install -g @openai/codex
     pre-commit install
     @echo "Setup complete!"
 
