@@ -1,5 +1,11 @@
 # Development tasks for boilerplate-base
 
+# Use bash for all recipes to avoid zsh/sh incompatibilities
+set shell := ["bash", "-c"]
+
+# Packages: AI CLI tools installed via Node.js (managed by mise)
+ai_cli_pkgs := "@anthropic-ai/claude-code @google/gemini-cli @openai/codex"
+
 # Show available commands
 help:
     @just --list
@@ -10,21 +16,20 @@ setup:
     brew bundle install
     @if command -v mise >/dev/null 2>&1; then \
         echo "→ Installing tools with mise..."; \
-        if [ "$(basename "$SHELL")" = "zsh" ]; then \
-            eval "$(mise activate zsh)"; \
-        elif [ "$(basename "$SHELL")" = "bash" ]; then \
-            eval "$(mise activate bash)"; \
-        fi; \
+        eval "$(mise activate bash)"; \
         mise install; \
     else \
         echo "⚠ mise not found. Please run 'make bootstrap' first."; \
         exit 1; \
     fi
-    @echo "→ Installing Node.js CLI tools..."
-    $(mise where nodejs)/bin/npm install -g @anthropic-ai/claude-code
-    $(mise where nodejs)/bin/npm install -g @google/gemini-cli
+    @just ai-install
     pre-commit install
     @echo "Setup complete!"
+
+# Install AI CLI tools only (can be run independently)
+ai-install:
+    @echo "→ Installing Node.js AI CLI tools..."
+    mise exec node -- npm install -g {{ai_cli_pkgs}}
 
 # Run pre-commit hooks on all files
 lint:
@@ -71,3 +76,16 @@ update-brew:
     brew update
     brew bundle install
     brew upgrade
+
+# Run rulesync with passthrough args
+rulesync args='':
+    @if [[ "{{args}}" =~ ^generate(\s|$) ]]; then \
+        echo "Generating AI assistant configs from docs/AI_RULES.ja.md"; \
+        bash scripts/rulesync-generate.sh; \
+    elif command -v rulesync >/dev/null 2>&1; then \
+        echo "Running: rulesync {{args}}"; \
+        rulesync {{args}}; \
+    else \
+        echo "⚠ rulesync が見つかりません。docs/RULESYNC.ja.md を参照してインストールしてください。"; \
+        exit 1; \
+    fi

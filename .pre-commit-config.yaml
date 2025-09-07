@@ -74,9 +74,24 @@ repos:
     rev: 41.75.0
     hooks:
       - id: renovate-config-validator
-        files: renovate.json
+        files: ^renovate\.json(5)?$
 
   - repo: https://github.com/antonbabenko/pre-commit-terraform
     rev: v1.100.0
     hooks:
       - id: terraform_fmt
+
+  # Optional: rulesync drift check
+  - repo: local
+    hooks:
+      - id: rulesync-check
+        name: rulesync check drift
+        language: system
+        entry: bash -lc 'bash scripts/rulesync-check.sh'
+        pass_filenames: false
+      - id: rulesync-apply
+        name: rulesync apply (manual)
+        language: system
+        entry: bash -lc 'bash scripts/rulesync-apply.sh'
+        pass_filenames: false
+        stages: [manual]
