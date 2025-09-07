@@ -3,6 +3,9 @@
 # Use bash for all recipes to avoid zsh/sh incompatibilities
 set shell := ["bash", "-c"]
 
+# Packages: AI CLI tools installed via Node.js (managed by mise)
+ai_cli_pkgs := "@anthropic-ai/claude-code @google/gemini-cli @openai/codex"
+
 # Show available commands
 help:
     @just --list
@@ -19,12 +22,14 @@ setup:
         echo "⚠ mise not found. Please run 'make bootstrap' first."; \
         exit 1; \
     fi
-    @echo "→ Installing Node.js CLI tools..."
-    mise exec node -- npm install -g @anthropic-ai/claude-code
-    mise exec node -- npm install -g @google/gemini-cli
-    mise exec node -- npm install -g @openai/codex
+    @just ai-install
     pre-commit install
     @echo "Setup complete!"
+
+# Install AI CLI tools only (can be run independently)
+ai-install:
+    @echo "→ Installing Node.js AI CLI tools..."
+    mise exec node -- npm install -g {{ai_cli_pkgs}}
 
 # Run pre-commit hooks on all files
 lint:

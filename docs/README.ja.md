@@ -66,10 +66,11 @@ just status
 
 ### 自動AI CLIツール
 
-`just setup`の実行時に、AI開発ツールが自動的にインストールされます：
+`just setup` の実行時に AI 開発ツールが自動的にインストールされます（個別に入れたい場合は `just ai-install`）：
 
-- **Claude Code CLI**: `@anthropic-ai/claude-code` - AI支援開発用
-- **Gemini CLI**: `@google/gemini-cli` - 代替AIアシスタント
+- **Claude Code CLI**: `@anthropic-ai/claude-code` - AI 支援開発用
+- **Gemini CLI**: `@google/gemini-cli` - 代替 AI アシスタント
+- **OpenAI Codex CLI**: `@openai/codex` - OpenAI 製のコード向け CLI
 
 このアプローチにより、関心事の明確な分離が保証され、システムツールと言語固有のバージョンとの間の競合が回避されます。
 
