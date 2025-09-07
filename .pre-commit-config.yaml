@@ -80,3 +80,12 @@ repos:
     rev: v1.100.0
     hooks:
       - id: terraform_fmt
+
+  # Optional: rulesync drift check (uncomment and adjust when enabling)
+  # - repo: local
+  #   hooks:
+  #     - id: rulesync-check
+  #       name: rulesync check drift
+  #       language: system
+  #       entry: bash -lc 'rulesync --check'
+  #       pass_filenames: false
