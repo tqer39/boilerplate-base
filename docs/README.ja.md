@@ -73,8 +73,3 @@ just status
 - **OpenAI Codex CLI**: `@openai/codex` - OpenAI 製のコード向け CLI
 
 このアプローチにより、関心事の明確な分離が保証され、システムツールと言語固有のバージョンとの間の競合が回避されます。
-
-## 追加ツール: rulesync（任意導入）
-
-- 共通設定ファイルを外部リポジトリから同期するための CLI。
-- 導入と使い方は `docs/RULESYNC.ja.md` を参照。

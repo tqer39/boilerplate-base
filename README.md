@@ -73,7 +73,3 @@ The setup automatically installs AI development tools during `just setup` (or ma
 - **OpenAI Codex CLI**: `@openai/codex` - OpenAI CLI for code workflows
 
 This approach ensures clean separation of concerns and avoids conflicts between system tools and language-specific versions.
-
-## Optional: rulesync
-
-If you want to synchronize common config files from an external rules repository, see `docs/RULESYNC.ja.md` for setup and usage.

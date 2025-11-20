@@ -28,7 +28,6 @@
 - `just lint`: すべてのファイルに対して pre-commit チェックを実行。
 - `just fix`: 一般的な自動修正を適用（EOF、空白、Markdown）。
 - `just update-brew` / `just update` / `just update-hooks`: パッケージ、ツール、フックの更新。
-- ルール同期（任意）: `just rulesync -- --check` / `just rulesync -- apply`
 
 ## コーディングスタイルと命名規則
 

@@ -56,7 +56,6 @@
     "pytest",
     "reviewdog",
     "rinchsan",
-    "rulesync",
     "shellcheck",
     "shellenv",
     "SSIA",
