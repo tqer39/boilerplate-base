@@ -48,7 +48,7 @@ mise upgrade
 # すべての利用可能なタスクを表示
 just help
 
-# 開発環境をセットアップ（brew bundle + mise install + Claude/Gemini CLI + pre-commit install）
+# 開発環境をセットアップ（brew bundle + mise install + Claude Code CLI + pre-commit install）
 just setup
 
 # すべてのリンティングチェックを実行
@@ -119,10 +119,9 @@ pre-commit run --all-files
 
 ### 自動CLIツールインストール
 
-`just setup`の実行時に、AI CLIツールが自動的にインストールされます：
+`just setup`の実行時に、Claude Code CLI が自動的にインストールされます：
 
-- **Claude Code CLI**: `@anthropic-ai/claude-code` - AI支援開発用
-- **Gemini CLI**: `@google/gemini-cli` - 代替AIアシスタント
+- **Claude Code CLI**: `@anthropic-ai/claude-code` - VS Code での AI 支援開発用
 
 ### 依存関係管理
 

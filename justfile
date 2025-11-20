@@ -4,7 +4,7 @@
 set shell := ["bash", "-c"]
 
 # Packages: AI CLI tools installed via Node.js (managed by mise)
-ai_cli_pkgs := "@anthropic-ai/claude-code @google/gemini-cli @openai/codex"
+ai_cli_pkgs := "@anthropic-ai/claude-code"
 
 # Show available commands
 help:
