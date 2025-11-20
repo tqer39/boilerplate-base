@@ -66,15 +66,8 @@ just status
 
 ### 自動AI CLIツール
 
-`just setup` の実行時に AI 開発ツールが自動的にインストールされます（個別に入れたい場合は `just ai-install`）：
+`just setup` の実行時に Claude Code CLI が自動的にインストールされます（個別に入れたい場合は `just ai-install`）：
 
-- **Claude Code CLI**: `@anthropic-ai/claude-code` - AI 支援開発用
-- **Gemini CLI**: `@google/gemini-cli` - 代替 AI アシスタント
-- **OpenAI Codex CLI**: `@openai/codex` - OpenAI 製のコード向け CLI
+- **Claude Code CLI**: `@anthropic-ai/claude-code` - VS Code での AI 支援開発用
 
 このアプローチにより、関心事の明確な分離が保証され、システムツールと言語固有のバージョンとの間の競合が回避されます。
-
-## 追加ツール: rulesync（任意導入）
-
-- 共通設定ファイルを外部リポジトリから同期するための CLI。
-- 導入と使い方は `docs/RULESYNC.ja.md` を参照。

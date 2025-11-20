@@ -4,7 +4,7 @@
 set shell := ["bash", "-c"]
 
 # Packages: AI CLI tools installed via Node.js (managed by mise)
-ai_cli_pkgs := "@anthropic-ai/claude-code @google/gemini-cli @openai/codex"
+ai_cli_pkgs := "@anthropic-ai/claude-code"
 
 # Show available commands
 help:
@@ -76,16 +76,3 @@ update-brew:
     brew update
     brew bundle install
     brew upgrade
-
-# Run rulesync with passthrough args
-rulesync args='':
-    @if [[ "{{args}}" =~ ^generate(\s|$) ]]; then \
-        echo "Generating AI assistant configs from docs/AI_RULES.ja.md"; \
-        bash scripts/rulesync-generate.sh; \
-    elif command -v rulesync >/dev/null 2>&1; then \
-        echo "Running: rulesync {{args}}"; \
-        rulesync {{args}}; \
-    else \
-        echo "⚠ rulesync が見つかりません。docs/RULESYNC.ja.md を参照してインストールしてください。"; \
-        exit 1; \
-    fi

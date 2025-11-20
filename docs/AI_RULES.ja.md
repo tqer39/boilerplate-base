@@ -1,6 +1,6 @@
 # AI アシスタント共通ルール（日本語）
 
-本リポジトリで Cursor / GitHub Copilot / Codex CLI / Gemini / Claude Code 等のアシスタントが一貫した挙動になるよう、プロジェクト固有の指示をまとめます。
+本リポジトリで Claude Code 等の AI アシスタントが一貫した挙動になるよう、プロジェクト固有の指示をまとめます。
 
 ## 基本方針
 
@@ -25,17 +25,6 @@
   - セットアップ: `brew bundle install` → `just setup`
   - Lint 全実行: `just lint`
   - 自動修正: `just fix`
-  - ルール同期（任意導入）: `just rulesync -- --check` / `just rulesync -- apply`
-
-## rulesync による設定ファイル生成
-
-- `just rulesync -- generate` で AI アシスタント向け設定ファイルを生成できる。
-- 生成対象（初期値）:
-  - `.cursorrules`（Cursor）
-  - `.github/copilot-instructions.md`（GitHub Copilot Chat）
-  - `CLAUDE.md`（Claude Code/Dev）
-  - `docs/AI_RULES.ja.md`（本ファイル: 単一ソース）
-- 生成物は本ファイルの内容をベースにし、各ツールに合わせたヘッダーを付す。
 
 ## 参考: ガイドラインの要点（抜粋）
 

@@ -66,14 +66,8 @@ This setup clearly separates tool responsibilities:
 
 ### Automated AI CLI Tools
 
-The setup automatically installs AI development tools during `just setup` (or manually via `just ai-install`):
+The setup automatically installs Claude Code CLI during `just setup` (or manually via `just ai-install`):
 
-- **Claude Code CLI**: `@anthropic-ai/claude-code` - For AI-assisted development
-- **Gemini CLI**: `@google/gemini-cli` - Alternative AI assistant
-- **OpenAI Codex CLI**: `@openai/codex` - OpenAI CLI for code workflows
+- **Claude Code CLI**: `@anthropic-ai/claude-code` - For AI-assisted development with VS Code
 
 This approach ensures clean separation of concerns and avoids conflicts between system tools and language-specific versions.
-
-## Optional: rulesync
-
-If you want to synchronize common config files from an external rules repository, see `docs/RULESYNC.ja.md` for setup and usage.
